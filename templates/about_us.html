@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}About us{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
 </head>
@@ -55,6 +55,9 @@
                     <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
                 </a>
                 {% else %}
+                     <a href="{{ url_for('index') }}">
+                    <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
+                </a>
                 
                 <a href="{{ url_for('base64_page') }}">
                     <div class="navBtn">Base64 encoder<img style="width: 15px; height: 15px;" src="/static/css/images/base64.png" alt=""></div>

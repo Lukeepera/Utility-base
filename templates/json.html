@@ -24,7 +24,11 @@
     <div class="encodedTextDiv">
         {% if output_text %}
             <a href="{{ url_for('download_file', filename=output_filename) }}" class="downloadBtn"><button>Download Result</button></a>
-        <p>{{ action }}d Text:</p>
+        {% if action == "Minify" %}
+            <p>Minified text:</p>
+            {% else: %}
+            <p>Beautified text</p>
+            {% endif %}
         <textarea rows="4" cols="50" style="width: 96%;min-height: 70%;">{{ output_text }}</textarea>
         {% endif %}
     </div>
