@@ -96,26 +96,23 @@ def base64_page():
 
         if file:
             filename = secure_filename(file.filename)
-            file_content = file.read()
 
-            if action == 'Encode':
-                try:
-                    output_text = encode_file(file_content)
+            try:
+                if action == 'Encode':
                     output_filename = f"{filename}.b64"
-                    with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'w') as f:
-                        f.write(output_text)
-                except Exception as e:
-                    flash(str(e), 'error')
-                    return render_template('base64.html', input_text=input_text, output_text="", action=action)
-            elif action == 'Decode':
-                try:
-                    output_text = decode_file(file_content)
-                    output_filename = filename.replace('.b64', '') 
                     with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'wb') as f:
-                        f.write(output_text) 
-                except Exception as e:
-                    flash(str(e), 'error')
-                    return render_template('base64.html', input_text=input_text, output_text="", action=action)
+                        output_text = encode_file(file)
+                        f.write(output_text)
+                elif action == 'Decode':
+                    file_content = file.read()
+                    output_text = decode_file(file_content, filename)  # Pass filename for correct output filename
+                    output_filename = filename.replace('.b64', '')  # Remove .b64 extension for decoded file
+                    with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'wb') as f:
+                        f.write(output_text)
+            except Exception as e:
+                flash(str(e), 'error')
+                return render_template('base64.html', input_text=input_text, output_text="", action=action)
+
         else:
             if action == 'Encode':
                 try:
