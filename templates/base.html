@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    <div class="switch" id="switch">
+        <button class="dark-mode-toggle dark-mode-toggle-light" id="darkModeToggle" onclick="moveRound()"></button>
+    </div>
+
+    {% if session.get("username") %}
+        <div class="navBtn" style="color: white; border-radius: 10px; position: absolute;left: 89%;">Logged in as: {{ session.username }}</div>
+    {% endif %}
+    <main style="padding: 10px; margin-left: auto;margin-right: auto; display: flex; ">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if session.get("username") %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+        <nav>
+            <div class="navigationDiv">
+                {% if not session.get("username") %}
+                <a href="{{ url_for('login') }}">
+                    <div class="navBtn">Login<img style="width: 15px; height: 15px;" src="/static/css/images/external-link.png" alt=""></div>
+                </a>
+                <a href="{{ url_for('index') }}">
+                    <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
+                </a>
+                {% else %}
+
+                    <a href="{{ url_for('index') }}">
+                    <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
+                </a>
+                
+                <a href="{{ url_for('base64_page') }}">
+                    <div class="navBtn">Base64 encoder<img style="width: 15px; height: 15px;" src="/static/css/images/base64.png" alt=""></div>
+                </a>
+                <a href="{{ url_for('url_page') }}">
+                    <div class="navBtn">URL encoder<img style="width: 15px; height: 15px;" src="/static/css/images/external-link.png" alt=""></div>
+                </a>
+                <a href="{{ url_for('json_page') }}">
+                    <div class="navBtn">JSON manager<img style="width: 15px; height: 15px;" src="/static/css/images/bracket-curly.png" alt=""></div>
+                </a>
+                <a href="{{ url_for('qr_page') }}">
+                    <div class="navBtn">QR Code generator<img style="width: 13px; height: 13px;" src="/static/css/images/qr-code.png" alt=""></div>
+                </a>
+                <a href="{{ url_for('link_shortener') }}">
+                    <div class="navBtn">Link Shortener <img style="width: 13px; height: 13px;" src="/static/css/images/url.png" alt=""></div>
+                </a>
+                {% endif %}
+            </div>
+            <div>
+                {% if session.get("username") %}
+                <a href="{{ url_for('logout') }}">
+                    <div class="aboutUs" style="margin-bottom: 10px;">Log out<img style="width: 15px; height: 15px;" src="/static/css/images/external-link.png" alt=""></div>
+                </a>
+                {% endif %}
+                <a href="{{ url_for('about_us') }}">
+                    <div class="aboutUs">About Us<img style="width: 13px; height: 13px;" src="/static/css/images/info.png" alt=""></div>
+                </a>
+            </div>
+        </nav>
+    </main>
+</body>
+</html>

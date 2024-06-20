@@ -1,0 +1,121 @@
+1)
+
+#!/bin/bash
+
+
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 N M filename"
+    exit 1
+fi
+
+
+N=$1
+M=$2
+filename=$3
+
+sed -n "${N},$((N + M - 1))p" "$filename"
+
+2)
+
+#!/bin/bash
+
+if [ ! -d "$HOME/myfiles" ]; then
+    mkdir -p "$HOME/myfiles"
+fi
+
+for input_file in "$@"; do
+    if [ -e "$input_file" ]; then
+        mv "$input_file" "$HOME/myfiles" && echo "Moved $input_file to $HOME/myfiles" || echo "Failed to move $input_file"
+    else
+        echo "$input_file does not exist."
+    fi
+done
+
+
+3)
+#!/bin/bash
+
+while true; do
+    echo "Menu:"
+    echo "1) Number of users"
+    echo "2) Size of \$HOME directories"
+    echo "3) Number of .conf files in /etc"
+    echo "4) The largest file size in \$HOME"
+    echo "5) Exit"
+    echo -n "Enter your choice: "
+    read choice
+    if [ "$choice" -eq 1 ]; then
+        num_users=$(who | wc -l)
+        echo "Number of users: $num_users"
+    elif [ "$choice" -eq 2 ]; then
+        home_size=$(du -sh "$HOME" | cut -f1)
+        echo "Size of \$HOME directories: $home_size"
+    elif [ "$choice" -eq 3 ]; then
+        num_conf_files=$(find /etc -type f -name "*.conf" 2>/dev/null | wc -l)
+        echo "Number of .conf files in /etc: $num_conf_files"
+    elif [ "$choice" -eq 4 ]; then
+        largest_file=$(find "$HOME" -type f -exec ls -l {} + 2>/dev/null | sort -k5 -nr | head -n1)
+        echo "The largest file size in \$HOME: $largest_file"
+    elif [ "$choice" -eq 5 ]; then
+        echo "Exiting..."
+        exit 0
+    else
+        echo "Invalid choice. Please enter a number from 1 to 5."
+    fi
+done
+
+
+4)
+
+#!/bin/bash
+
+bak_files=$(find "$HOME" -type f -name "*.bak")
+
+for bak_file_path in $bak_files; do
+    bak_file_name=$(basename "$bak_file_path" .bak)
+    
+    if ! [ -e "$HOME/$bak_file_name" ] || [ "$HOME/$bak_file_name" -ot "$bak_file_path" ]; then
+        read -p "Do you want to rename '$bak_file_path' to remove the .bak suffix? (yes/no): " user_response
+        
+        if [[ "${user_response:0:1}" == [Yy] ]]; then
+            new_file_path="${bak_file_path%.bak}"
+            mv "$bak_file_path" "$new_file_path"
+            echo "File '$bak_file_path' renamed to '$new_file_path'"
+        fi
+    fi
+done
+
+
+5)
+
+#!/bin/bash
+
+write_names() {
+    local directory="$1"
+    local failebis_sia="$2"
+    local direqtoriebis_sia="$3"
+    
+    for i in "$directory"/*; do
+        if [ -f "$i" ]; then
+            echo "$(basename "$i")" >> "$failebis_sia"
+        elif [ -d "$i" ]; then
+            echo "$(basename "$i")" >> "$direqtoriebis_sia"
+            write_names "$i" "$failebis_sia" "$direqtoriebis_sia"
+        fi
+    done
+}
+
+failebis_sia="$HOME/fichier"
+direqtoriebis_sia="$HOME/direqtoria"
+
+> "$failebis_sia"
+> "$direqtoriebis_sia"
+
+write_names "$PWD" "$failebis_sia" "$direqtoriebis_sia"
+
+echo "File names written to $failebis_sia"
+echo "Directory names written to $direqtoriebis_sia"
+
+
+
+

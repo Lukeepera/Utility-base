@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Base64{% endblock %}
+
+{% block content %}
+
+<div class="mainCont">
+    <div class="container">
+        <h1 class="headP" style="margin-left: auto; margin-right: auto; ">Base64 Encoder/Decoder</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div>
+                <label class="inputLabel" for="input_text">Input:</label>
+                <textarea id="input_text" name="input_text" rows="4" cols="50">{{ input_text }}</textarea>
+            </div>
+            <div>
+                <label class="inputLabel" for="file">Upload File:</label>
+                <input style="margin-left: 13%;margin-bottom: 3%;" type="file" id="file" name="file">
+            </div>
+            <div>
+                <button type="submit" name="action" value="Encode">Encode</button>
+                <button type="submit" name="action" value="Decode">Decode</button>
+            </div>
+        </form>
+    </div>
+    <div class="encodedTextDiv">
+        {% if output_text %}
+        <a href="{{ url_for('download_file', filename=output_filename) }}" class="btn btn-primary"><button>Download Result</button></a>
+        <h4>{{ action }}d Text:</h4>
+        <p>{{ output_text }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

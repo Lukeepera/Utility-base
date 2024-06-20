@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="aboutUsPage" style="width: 55%; padding: 15px;">
+    <h1>Welcome to the Utility Base!</h1>
+    <h4>UtilityBase is a comprehensive toolkit designed to simplify your everyday tasks. Here's a quick guide to help you get started:</h4>
+    <br>
+    <br>
+    <h2>· Base64 Encoder/Decoder</h2>
+    <p>You can either enter text or upload files for Base64 encoding or decoding.</p>
+    <p>Please ensure that files are no larger than 3GB.</p>
+    <p>Keep in mind that higher file sizes may cause the site to run slower due to its Python-based infrastructure.</p>
+
+    <h2>· JSON Minifier/Beautifier</h2>
+    <p>You can input JSON text directly or upload a JSON file to minify or beautify.</p>
+    <p>Similar to the Base64 tool, ensure that JSON files do not exceed 3GB in size for optimal performance.</p>
+
+    <h2>· URL Encoder/Decoder</h2>
+    <p>Enter a valid URL for encoding or decoding.</p>
+    <p>Make sure the URL starts with "http://".</p>
+
+    <h2>· QR Code Generator</h2>
+    <p>Generate QR codes from text or links.</p>
+    <p>Simply input the desired text or URL to get your QR code.</p>
+
+    <p>If you encounter any issues or have questions, don't hesitate to reach out to us. Enjoy using UtilityBase!</p>
+</div>
+{% endblock %}

@@ -1,0 +1,399 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("./images/darkmode.jpg");
+    transition: background-image 0.3s ease;
+}
+.navBtn, .aboutUs, .alert, form, textarea, button, .qrCodeDiv, ::-webkit-scrollbar-thumb ,main,.mainCont,.headP .aboutUsPage {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.qrCodeDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.dark-mode {
+   
+    background-image: url("./images/lightmode.jpg");
+}
+
+.navBtn {
+    background-color: #ccc;
+    color: #000;
+    cursor: pointer;
+}
+.navBtn.active {
+    background-color: rgb(158, 158, 158);
+    color: rgb(0, 0, 0);
+}
+.loginInput{
+    margin-bottom: 6px;
+}
+.loginInput input{
+    width: 60%;
+    padding: 5px;
+    outline: rgb(158, 158, 158);
+}
+.btn{
+    background-color: rgb(105, 105, 105);
+}
+nav {
+    width: 35%;
+    padding: 10px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 94%;
+}
+.aboutUs:hover{
+    background-color: rgb(157, 157, 157);
+}
+.aboutUs{
+    border-radius: 10px;
+    background-color: rgb(92, 92, 90);
+    color: white;
+    height: 50px;
+    padding-right: 25px;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav a{
+    text-decoration: none;
+    color: inherit;
+}
+.navigationDiv a {
+    text-decoration: none;
+    color: inherit;
+}
+.navigationDiv {
+    display: grid;
+    gap: 15px;
+}
+.navBtn{
+    border-radius: 10px;
+    background-color: rgb(92, 92, 90);
+    color: white;
+    height: 50px;
+    padding-right: 25px;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+.inputLabel {
+    font-weight: 600;
+}
+button {
+    background-color: rgb(104, 104, 104);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgb(133, 133, 133);
+}
+.navBtn:hover {
+    background-color: rgb(157, 157, 157);
+}
+textarea {
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #5e5e5e;
+    color: white;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 15vh;
+    max-height: 40vh;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #858585;
+}
+
+form {
+    background-color: #555;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 30vh;
+}
+.aboutUsPage{
+    color: white;
+}
+.aboutUsPage .dark-mode{
+    color: black;
+}
+main {
+    background-color: rgb(29, 29, 27);
+    height: 100vh;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.downloadBtn{
+    background-color: rgb(105, 105, 105);
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 7px;
+}
+.mainCont {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 97vh;
+    width: 65%;
+    background-color: rgb(29, 29, 27);
+}
+.sunIcon{
+    display: none;
+}
+.moonIcon{
+    display: none;
+}
+.mainCont h1 {
+    color: white;
+}
+.switch{
+    position: absolute;
+    left: 1%;
+    
+}
+.dark-mode-toggle {
+    width: 32px;
+    height: 32px;
+    top: 4px;
+    left: 5px;
+    border-radius: 32px;
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease, background-image 0.3s ease, background-color 0.3s ease;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.dark-mode-toggle-light {
+    background-image: url('./images/moon.png');
+    background-color: #888888;
+}
+.dark-mode-toggle-light:hover{
+    background-color: rgb(180, 180, 180);
+}
+
+
+.dark-mode-toggle-dark {
+    background-image: url('./images/sun.png'); 
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+}
+
+.validation2{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.switch{
+    width: 90px;
+height: 38px;
+top: 1px;
+border-radius: 19px;
+background-color: #FFFFFF4D;
+padding: 5px;
+display:inline-block;
+
+}
+.container {
+    width: 100%;
+}
+.encodedTextDiv {
+    margin-top: 15px;
+    border-radius: 7px;
+    background-color: #555;
+    min-height: 49vh;
+    width: 96%;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    transition: height 0.5s;
+    overflow-y: auto;
+    transition: background-color 0.3s, color 0.3s;
+}
+.encodedTextDiv img {
+    max-width: 100%;
+    max-height: calc(53vh - 20px);
+    margin: auto;
+    display: block;
+    background-color: #555;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.qrCodeContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.qrCodeContainer img {
+    max-width: 80%;
+    height: auto;
+    background-color: #555;
+    padding: 20px;
+}
+
+.qrCodeColors {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.backgroundColor {
+    width: 20%;
+}
+
+.fillColor {
+    width: 20%;
+}
+
+.qrBtn {
+    width: 30%;
+}
+
+.qrCodeDiv {
+    margin-top: 15px;
+    border-radius: 7px;
+    background-color: #555;
+    min-height: 45vh;
+    width: 96%;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    transition: height 0.5s;
+    overflow-y: auto;
+}
+
+.alert {
+    border-radius: 10px;
+    background-color: rgb(92, 92, 90);
+    padding: 5px;
+    color: white;
+    position: absolute;
+}
+
+.validation{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+
+}
+
+.logged-in-as {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+.dark-mode {
+    background-color: #333;
+    color: #ccc;
+}
+
+.dark-mode .navBtn {
+    background-color: #b4b4b4;
+    color: black;
+}
+.dark-mode main{
+    background-color: rgb(226, 226, 228);
+}
+.dark-mode .mainCont{
+    background-color: rgb(226, 226, 228);
+}
+
+.dark-mode .headP{
+    color: black;
+}
+.headP{
+    color: white;
+}
+.dark-mode .navBtn.active {
+    background-color: #444;
+    color: white;
+}
+
+.dark-mode .aboutUs {
+    background-color: #b4b4b4;
+    color: black;
+}
+
+.dark-mode .alert {
+    background-color: #555;
+    color: white;
+}
+
+.dark-mode form {
+    background-color: #ffffff;
+    color: rgb(41, 41, 41);
+}
+
+.dark-mode textarea {
+    background-color: #ffffff;
+    color: black;
+}
+
+.dark-mode button {
+    background-color: #666;
+    color: white;
+}
+
+.dark-mode .encodedTextDiv,
+.dark-mode .qrCodeDiv {
+    background-color: #ffffff;
+    color: black;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

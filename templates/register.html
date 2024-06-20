@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<style>
+    .form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 18%;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    .flash-messages {
+        margin-top: 10px;
+    }
+    .validation {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+</style>
+
+<form class="form-container" method="post">
+    <h1>Register</h1>
+    <div class="loginInput">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" id="username" required>
+    </div>
+    <div class="loginInput">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password" required>
+    </div>
+    <div class="loginInput">
+        <label for="password2" class="form-label">Repeat Password</label>
+        <input type="password" name="password2" class="form-control" id="password2" required>
+    </div>
+    <button style="margin-bottom: 5px;" type="submit" class="btn btn-primary">Register</button>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="validation validation-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+</form>
+{% endblock %}
