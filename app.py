@@ -100,14 +100,16 @@ def base64_page():
             try:
                 if action == 'Encode':
                     output_filename = f"{filename}.b64"
-                    with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'wb') as f:
+                    file_path = os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename)
+                    with open(file_path, 'wb') as f:
                         output_text = encode_file(file)
                         f.write(output_text)
                 elif action == 'Decode':
                     file_content = file.read()
-                    output_text = decode_file(file_content, filename)  # Pass filename for correct output filename
+                    output_text = decode_file(file_content)
                     output_filename = filename.replace('.b64', '')  # Remove .b64 extension for decoded file
-                    with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'wb') as f:
+                    file_path = os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename)
+                    with open(file_path, 'wb') as f:
                         f.write(output_text)
             except Exception as e:
                 flash(str(e), 'error')
@@ -128,13 +130,13 @@ def base64_page():
                     return render_template('base64.html', input_text=input_text, output_text="", action=action)
 
             output_filename = "output.txt"
-            with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'w') as f:
+            with open(os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename), 'w', encoding='utf-8') as f:
                 f.write(output_text)
 
-        return render_template('base64.html', input_text=input_text, output_text=output_text, action=action,
-                               output_filename=output_filename)
+        return render_template('base64.html', input_text=input_text, output_text=output_text, action=action, output_filename=output_filename)
 
     return render_template('base64.html')
+
 
 
 @app.route('/json', methods=['GET', 'POST'])
