@@ -137,8 +137,6 @@ def base64_page():
 
     return render_template('base64.html')
 
-
-
 @app.route('/json', methods=['GET', 'POST'])
 def json_page():
     if 'username' not in session:
