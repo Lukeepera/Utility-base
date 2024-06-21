@@ -35,6 +35,10 @@ def insert_new_user(username, password):
     db.session.commit()
 
 
+with app.app_context():
+    db.create_all()
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -80,7 +84,6 @@ def logout():
     session.pop('password', None)
     return render_template("index.html")
 
-
 @app.route('/base64', methods=['GET', 'POST'])
 def base64_page():
     if 'username' not in session:
@@ -107,7 +110,8 @@ def base64_page():
                 elif action == 'Decode':
                     file_content = file.read()
                     output_text = decode_file(file_content)
-                    output_filename = filename.replace('.b64', '')  # Remove .b64 extension for decoded file
+                    original_extension = filename.rsplit('.', 2)[-2]
+                    output_filename = filename.replace('.b64', f".{original_extension}")
                     file_path = os.path.join(app.config['DOWNLOAD_FOLDER'], output_filename)
                     with open(file_path, 'wb') as f:
                         f.write(output_text)

@@ -17,7 +17,7 @@
     {% if session.get("username") %}
         <div class="navBtn" style="color: white; border-radius: 10px; position: absolute;left: 89%;">Logged in as: {{ session.username }}</div>
     {% endif %}
-    <main style="padding: 10px; margin-left: auto;margin-right: auto; display: flex; height: 100vh;">
+    <main style=" margin-left: auto;margin-right: auto; display: flex; height: 100%; overflow-y: auto; ">
         {% with messages = get_flashed_messages(with_categories=True) %}
             {% if session.get("username") %}
                 <div class="flash-messages">
@@ -27,7 +27,7 @@
                 </div>
             {% endif %}
         {% endwith %}
-        <div class="aboutUsPage" style="width: 55%; padding: 15px;">
+        <div class="aboutUsPage" style="width: 55%; padding: 15px; height: 90%;">
             <h2>About Us</h2>
             <p>Welcome to Utility Base, a multifunctional tool website designed to simplify your everyday digital tasks. Our platform offers a variety of utilities, including Base64 encoding and decoding, URL encoding and decoding, JSON minification and beautification, URL shortening, and QR code generation.</p>
             <h2>Our Story</h2>
@@ -42,9 +42,7 @@
             <p>Our mission was to provide a reliable, easy-to-use toolkit for everyone, from tech enthusiasts to professionals who need quick and efficient solutions for their everyday tasks. We aim to continually improve and expand our services to meet the evolving needs of our users. Our site is still far from perfect, but we are eager to continue working on it!</p>
             <h2>Contact Us</h2>
             <p>We value your feedback and suggestions. If you have any questions, comments, or ideas on how we can improve, please feel free to reach out to us.</p>
-            <br>
             <p>Contact - <b>feedback.utilitybase@gmail.com</b></p>
-            <br>
             <p>Thank you for visiting Utility Base. We hope our tools make your tasks easier and more efficient.</p>
         </div>
         {% block content %}{% endblock %}
@@ -58,7 +56,7 @@
                     <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
                 </a>
                 {% else %}
-                     <a href="{{ url_for('index') }}">
+                    <a href="{{ url_for('index') }}">
                     <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
                 </a>
                 

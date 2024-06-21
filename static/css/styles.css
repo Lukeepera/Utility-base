@@ -6,18 +6,22 @@ body {
     background-size: cover;
     background-image: url("./images/darkmode.jpg");
     transition: background-image 0.3s ease;
+    
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .navBtn, .aboutUs, .alert, form, textarea, button, .qrCodeDiv, ::-webkit-scrollbar-thumb ,main,.mainCont,.headP .aboutUsPage {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.qrCodeDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.validation{
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 .dark-mode {
    
@@ -51,7 +55,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 94%;
+    height: 90%;
 }
 .aboutUs:hover{
     background-color: rgb(157, 157, 157);
@@ -143,7 +147,7 @@ form {
 }
 main {
     background-color: rgb(29, 29, 27);
-    height: 100vh;
+    height: 100%;
     width: 55%;
     margin-left: auto;
     margin-right: auto;
@@ -207,12 +211,6 @@ main {
     background-repeat: no-repeat;
     background-size: 18px 18px;
 }
-
-.validation2{
-    margin-left: auto;
-    margin-right: auto;
-}
-
 
 
 .switch{
@@ -312,14 +310,9 @@ display:inline-block;
     background-color: rgb(92, 92, 90);
     padding: 5px;
     color: white;
-    position: absolute;
-}
 
-.validation{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
 
+    width: auto;
 }
 
 .logged-in-as {

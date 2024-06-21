@@ -1,29 +1,17 @@
 import base64
-import multiprocessing
-
-def encode_chunk(chunk):
-    return base64.b64encode(chunk)
-
-def decode_chunk(chunk):
-    return base64.b64decode(chunk)
 
 def encode_file(file):
     try:
-        pool = multiprocessing.Pool()
-        encoded_chunks = pool.map(encode_chunk, iter(lambda: file.read(65536), b''))
-        pool.close()
-        pool.join()
-        return b''.join(encoded_chunks)
+        file_content = file.read()
+        encoded_content = base64.b64encode(file_content)
+        return encoded_content
     except Exception as e:
         raise ValueError(f"Error encoding file: {str(e)}")
 
 def decode_file(file_content):
     try:
-        pool = multiprocessing.Pool()
-        decoded_chunks = pool.map(decode_chunk, iter(lambda: file_content.read(65536), b''))
-        pool.close()
-        pool.join()
-        return b''.join(decoded_chunks)
+        decoded_content = base64.b64decode(file_content)
+        return decoded_content
     except Exception as e:
         raise ValueError(f"Error decoding file: {str(e)}")
 
