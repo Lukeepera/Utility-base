@@ -13,21 +13,18 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'vjw&2bmQx9LDH3!ZcR8e7$fSbFz+o5n@1*p4J0aKPTquMd?YUVtg!6lAiyhB#wN'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Utilitybase.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['DOWNLOAD_FOLDER'] = 'downloads'
-
+app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+app.config['DOWNLOAD_FOLDER'] = os.path.join(os.getcwd(), 'downloads')
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['DOWNLOAD_FOLDER'], exist_ok=True)
 
 db = SQLAlchemy(app)
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(30), unique=True, nullable=False)
     password = db.Column(db.String(9999), nullable=False)
-
 
 def insert_new_user(username, password):
     new_user = User(username=username, password=generate_password_hash(password))
@@ -43,7 +40,6 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -57,7 +53,6 @@ def login():
         else:
             flash('Invalid username or password', 'error')
     return render_template('login.html')
-
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -76,7 +71,6 @@ def register():
             return redirect(url_for('login'))
 
     return render_template('register.html')
-
 
 @app.route("/logout")
 def logout():
@@ -180,7 +174,6 @@ def json_page():
 
     return render_template('json.html')
 
-
 @app.route('/url', methods=['GET', 'POST'])
 def url_page():
     if 'username' not in session:
@@ -199,7 +192,6 @@ def url_page():
             return render_template('url.html', input_text=input_text, output_text=decoded_text, action=action)
 
     return render_template('url.html')
-
 
 @app.route('/qr', methods=['GET', 'POST'])
 def qr_page():
@@ -222,7 +214,6 @@ def qr_page():
 
     return render_template('qr.html')
 
-
 @app.route('/link_shortener', methods=['GET', 'POST'])
 def link_shortener():
     if 'username' not in session:
@@ -236,11 +227,13 @@ def link_shortener():
 
     return render_template('link_shortener.html')
 
-
 @app.route('/download/<filename>')
 def download_file(filename):
-    return send_file(os.path.join(app.config['DOWNLOAD_FOLDER'], filename), as_attachment=True)
-
+    try:
+        return send_file(os.path.join(app.config['DOWNLOAD_FOLDER'], filename), as_attachment=True)
+    except Exception as e:
+        flash(str(e), 'error')
+        return redirect(url_for('index'))
 
 @app.route("/about_us")
 def about_us():
