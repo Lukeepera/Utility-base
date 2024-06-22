@@ -303,6 +303,10 @@ display:inline-block;
     word-wrap: break-word;
     transition: height 0.5s;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .alert {
