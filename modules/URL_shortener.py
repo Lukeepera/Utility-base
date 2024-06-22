@@ -9,5 +9,5 @@ def url_shorten(inputed_url):
 
         return shortened_url
 
-    except KeyError:
-        return "Wrong type of input. Please enter a valid URL."
+    except Exception:
+        return "Wrong type of input or Proxy-error (API not enabled) !"
