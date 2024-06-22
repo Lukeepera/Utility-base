@@ -20,7 +20,7 @@
             {% if session.get("username") %}
                 <div class="flash-messages">
                     {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                        <div class="alert alert-{{ category }}" style="position: absolute">{{ message }}</div>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -36,6 +36,9 @@
                     <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
                 </a>
                 {% else %}
+                    <a href="{{ url_for('index') }}">
+                    <div class="navBtn">Home <img style="width: 15px; height: 15px;" src="/static/css/images/home.png" alt=""></div>
+                </a>
                 
                 <a href="{{ url_for('base64_page') }}">
                     <div class="navBtn">Base64 encoder<img style="width: 15px; height: 15px;" src="/static/css/images/base64.png" alt=""></div>

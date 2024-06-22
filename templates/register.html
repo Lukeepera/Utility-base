@@ -44,6 +44,7 @@
         <input type="password" name="password2" class="form-control" id="password2" required>
     </div>
     <button style="margin-bottom: 5px;" type="submit" class="btn btn-primary">Register</button>
+
     {% with messages = get_flashed_messages(with_categories=True) %}
     {% if messages %}
         <div class="flash-messages">

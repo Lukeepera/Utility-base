@@ -314,9 +314,6 @@ display:inline-block;
     background-color: rgb(92, 92, 90);
     padding: 5px;
     color: white;
-
-
-    width: auto;
 }
 
 .logged-in-as {
